@@ -26,10 +26,10 @@ if __name__=="__main__":
         for line in f:
             splits = [int(x) for x in line.split()]
             if len(splits) < 1: continue
+            if line_ok(splits): safeLines+=1
             ok = 0
             for i in range(len(splits)):
                 ok += line_ok(splits[0:i]+splits[i+1:])
-            if ok == 0: print(splits)
-            else: safeP2Lines+=1
+            if ok>0: safeP2Lines+=1
     print(safeLines)
     print(safeP2Lines)
