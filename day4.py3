@@ -17,18 +17,13 @@ def checkXMAS(M,A,S):
 
 def P2Valid(y,x):
     global table
-    for tup in [('S','M'),('M','S')]:
-        if table[y-1][x-1] == tup[0] and table[y+1][x+1] == tup[1]:
-            #We're good
-            break
-    else:
-        return False
-    for tup in [('S','M'),('M','S')]:
-        if table[y+1][x-1] == tup[0] and table[y-1][x+1] == tup[1]:
-            #We're good
-            break
-    else:
-        return False
+    for pos in [(-1,-1,+1,+1),(+1,-1,-1,+1)]:
+        for tup in [('S','M'),('M','S')]:
+            if table[y+pos[0]][x+pos[1]] == tup[0] and table[y+pos[2]][x+pos[3]] == tup[1]:
+                #We're good
+                break
+        else:
+            return False
     return True
 
 if __name__=="__main__":
